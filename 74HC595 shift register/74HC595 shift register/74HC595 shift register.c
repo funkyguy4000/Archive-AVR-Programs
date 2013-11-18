@@ -15,14 +15,14 @@
 
 #define Register DDRB;
 #define RegisterPort PORTB;
-#define DATA (1<<PB4);
-#define LATCH (1<<PB5);
+#define DATA (1<<PB5);
+#define LATCH (1<<PB4);
 #define CLOCK (1<<PB7); 
 #define NUM_595 1;
 
 void InitSPI(void) {
-	Register |= (DATA | LATCH | CLOCK);					//Sets SS, MOSI, and SCK as output
-	RegisterPort &= ~(DATA | LATCH | CLOCK);			//Sets the control pins
+	DDRB |= (1<<PB5) | (1<<PB4) | (1<<PB7);					//Sets SS, MOSI, and SCK as output
+	PORTB &= ~((1<<PB5) | (1<<PB4) | (1<<PB7));			//Sets the control pins
 	
 	//SPI Configuration Register  SPE = SPI Enable  MSTR = Master
 	SPCR = ( (1<<SPE) | (1<<MSTR) | (1<<SPR1) | (1<<SPR0));		//Enable SPI, Master, set clock rate fck/128
@@ -34,8 +34,8 @@ void WriteByteSPI(unsigned char byte) {
 }
 
 void ToggleLatch(void){
-	  RegisterPort |= LATCH;
-	  RegisterPort &= ~LATCH;
+	  PORTB |= LATCH;
+	  PORTB &= ~LATCH;
 }
 
 char ReadByteSPI(char addr) {
