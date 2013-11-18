@@ -1,5 +1,5 @@
 /*
- * Shift_register_atmega16.cpp
+ * Shift_DDRB_atmega16.cpp
  *
  * Created: 9/5/2013 12:05:49 PM
  *  Author: Shannon Strutz
@@ -13,33 +13,27 @@
 #include <util/delay.h>
 #include <avr/io.h>
 
-#define Register DDRB;
-#define RegisterPort PORTB;
-#define DATA (1<<PB4);
-#define LATCH (1<<PB5);
-#define CLOCK (1<<PB7); 
-#define NUM_595 1;
 
 void InitSPI(void) {
-	Register |= (DATA | LATCH | CLOCK);					//Sets SS, MOSI, and SCK as output
-	RegisterPort &= ~(DATA | LATCH | CLOCK);			//Sets the control pins
+	DDRB |= ((1<<PB4) | (1<<PB5) | (1<<PB7));					//Sets SS, MOSI, and SCK as output
+	PORTB &= ~((1<<PB4) | (1<<PB5) | (1<<PB7));			//Sets the control pins
 	
-	//SPI Configuration Register  SPE = SPI Enable  MSTR = Master
-	SPCR = ( (1<<SPE) | (1<<MSTR) | (1<<SPR1) | (1<<SPR0));		//Enable SPI, Master, set clock rate fck/128
+	//SPI Configuration DDRB  SPE = SPI Enable  MSTR = Master
+	SPCR = ( (1<<SPE) | (1<<MSTR) | (1<<SPR1) | (1<<SPR0));		//Enable SPI, Master, set (1<<PB7) rate fck/128
 }
 
 void WriteByteSPI(unsigned char byte) {
-	SPDR = byte;												//Loads byte into Data Register
+	SPDR = byte;												//Loads byte into (1<<PB4) DDRB
 	while(!(SPSR & (1<<SPIF)));									//Wait for transmission to complete
 }
 
 void ToggleLatch(void){
-	  RegisterPort |= LATCH;
-	  RegisterPort &= ~LATCH;
+	  PORTB |= (1<<PB5);
+	  PORTB &= ~(1<<PB5);
 }
 
 char ReadByteSPI(char addr) {
-	SPDR = addr;												//Load byte into data regsiter
+	SPDR = addr;												//Load byte into (1<<PB4) regsiter
 	while(!(SPSR & (1<<SPIF)));									//Wait for transmission to complete
 	addr=SPDR;
 	return addr;

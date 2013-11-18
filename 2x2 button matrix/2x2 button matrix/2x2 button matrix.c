@@ -2,7 +2,10 @@
  * _2x2_button_matrix.c
  *
  * Created: 9/9/2013 10:36:58 PM
- *  Author: ShannonS
+ *  Author: Shannon Strutz
+ *
+ *	Still a work in progress!!!
+ *
  */ 
 
 #define F_CPU 8000000UL
