@@ -1,14 +1,6 @@
-// TLC5940 class for ATMega MCUs
-// https://github.com/mcous/TLC5940
-// copyright 2013 by michael cousins
-// released under the terms of the MIT license
-
 #include "TLC5940.h"
-
-// DDR from PORT macro
-#define DDR(port) (*(&port-1))
-
 // give the variables some default values
+/*
 TLC5940(void) {
 	// initialize variables at all leds off for safety and dot correction to full brightness
 	for (uint8_t i=0; i<(16 * TLC5940_N); i++) {
@@ -20,77 +12,83 @@ TLC5940(void) {
 
 	newData = false;
 }
-
-
-#define SCLK = PB5;
-#define XLAT = PB4;
-#define MOSI = PB7;
-
+*/
 
 // initialize the pins and set dot correction
+
+
+#define SPI_DDR		DDRB
+#define SPI_PORT	PORTB
+#define GS_XT_DDR	DDRD
+#define GS_XT_PORT	PORTD
+
+#define BLANK		PB4
+#define MOSI		PB5
+#define MISO		PB6
+#define SCLK		PB7
+#define GSCLK		PD3
+#define XLAT		PD5
+
+#define NUM_TLC		4
+
+void PulseLatch(void){
+	GS_XT_PORT |= (1<<XLAT);
+	GS_XT_PORT &= ~(1<<XLAT);
+}
+
+void PulseSCLK(void){
+	SPI_PORT |= (1<<SCLK);
+	SPI_PORT &= ~(1<<SCLK);
+}
+
 void init(void) {
-	// initialize pins
 	
-	// Grayscale Clock, AVR signal = INT1
-	DDRD |= (1<<5);		//Sets PD5 as output
-	PORTD &= ~(1<<5);	//Sets PD5 low
+	// Serial Clock, AVR signal = SCK = PB7
+	// Blank, AVR signal = ~SS = PB4
+	// Serial Data, AVR signal = MOSI = PB5
+	SPI_DDR |= (1<<MOSI) | (1<<BLANK) | (1<<SCLK);			//Sets MOSI, ~SS, and SCK as outputs
+	SPI_PORT &= ~((1<<MOSI) & ~(1<<BLANK) & ~(1<<SCLK));	//Sets MOSI, ~SS, and SCK low
 	
-	// Serial Clock, AVR signal = SCK
-	// Latch, AVR signal = ~SS
-	// Serial Data, AVR signal = MOSI
+	// Grayscale Clock, AVR signal = INT1 = PD3
+	// External Latch, AVR signal = OC1A = PD5
+	GS_XT_DDR |= (1<<GSCLK) | (1<<XLAT);	//Sets PD3 as output
+	GS_XT_PORT &= ~(1<<GSCLK) & ~(1<<XLAT);	//Sets PD3 low
+	
 
-	DDRB |= (1<<PB5) | (1<<PB4) | (1<<PB7); //Sets SCK, ~SS, and MOSI as outputs
-	PORTB &= ~((1<<PB5) & (1<<PB4) & (1<<PB7));
-	
-	TLC5940_SCK_PORT &= ~(1 << TLC5940_SCK_PIN);
-	// xlat - output set low
-	DDR(TLC5940_XLAT_PORT) |= (1 << TLC5940_XLAT_PIN);
-	TLC5940_XLAT_PORT &= ~(1 << TLC5940_XLAT_PIN);
-	// blank - output set high (active high pin blanks output when high)
-	DDR(TLC5940_BLANK_PORT) |= (1 << TLC5940_BLANK_PIN);
-	TLC5940_BLANK_PORT &= ~(1 << TLC5940_BLANK_PIN);
-	// serial data MOSI - output set low
-	DDR(TLC5940_MOSI_PORT) |= (1 << TLC5940_MOSI_PIN);
-	TLC5940_MOSI_PORT &= ~(1 << TLC5940_MOSI_PIN);
-	// programming select - output set high
-	DDR(TLC5940_VPRG_PORT) |= (1 << TLC5940_VPRG_PIN);
-	TLC5940_VPRG_PORT |= (1 << TLC5940_VPRG_PIN);
-
-	// set vprg to 1 (program dc data)
-	TLC5940_VPRG_PORT |= (1 << TLC5940_VPRG_PIN);
-	// set serial data to high (setting dc to 1)
-	TLC5940_MOSI_PORT |= (1 << TLC5940_MOSI_PIN);
 
 	// pulse the serial clock (96 * number-of-drivers) times to write in dc data
 	for (uint16_t i=0; i<(96 * TLC5940_N); i++) {
 		// get the bit the tlc5940 is expecting from the gs array (tlc expects msb first)
-		uint8_t data = (dc[((96 * TLC5940_N) - 1 - i)/6]) & (1 << ((96 * TLC5940_N) - 1 - i)%6);
+		
+		//uint8_t data = (dc[((96 * TLC5940_N) - 1 - i)/6]) & (1 << ((96 * TLC5940_N) - 1 - i)%6);
+		
 		// set mosi if bit is high, clear if bit is low
+		/*
 		if (data) {
-			TLC5940_MOSI_PORT |= (1 << TLC5940_MOSI_PIN);
+			SPI_PORT |= (1 << MOSI);
 		}
 		else {
-			TLC5940_MOSI_PORT &= ~(1 << TLC5940_MOSI_PIN);
+			SPI_PORT &= ~(1 << MOSI);
 		}
-		TLC5940_SCK_PORT |= (1 << TLC5940_SCK_PIN);
-		TLC5940_SCK_PORT &= ~(1 << TLC5940_SCK_PIN);
+		*/
+		PulseSCLK();
 	}
 
 	// pulse xlat to latch the data
-	TLC5940_XLAT_PORT |= (1 << TLC5940_XLAT_PIN);
-	TLC5940_XLAT_PORT &= ~(1 << TLC5940_XLAT_PIN);
+	PulseLatch();
 
 	// enable leds
-	TLC5940_BLANK_PORT &= ~(1 << TLC5940_BLANK_PIN);
+	SPI_PORT &= ~(1 << BLANK);
 }
 
+/*
 // refresh the led display and data
 void refreshGS(void) {
 	bool gsFirstCycle = false;
 	static bool needLatch = false;
 
 	// disable leds before latching in new data
-	TLC5940_BLANK_PORT |= (1 << TLC5940_BLANK_PIN);
+	SPI_PORT |= (1 << BLANK);
 
 	// check if vprg is still high
 	if ( TLC5940_VPRG_PORT & (1 << TLC5940_VPRG_PIN) ) {
@@ -179,3 +177,4 @@ void setGS(uint8_t led, uint16_t val) {
 		}
 	}
 }
+*/

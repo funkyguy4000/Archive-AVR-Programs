@@ -6,35 +6,7 @@
 #include <stdlib.h>
 
 
-//these are the necessary pin definitions
-// TLC signal - AVR signal - AVR pin
-// GSCLK - INT1 - PD3
-// SCLK - SCK - PB7
-// XLAT - OC1A - PD5
-// BLANK - ~SS - PB4
-// SIN - MOSI - PB5
 
-// grayscale lock  *
-#ifndef TLC5940_GS_PORT
-#define TLC5940_GS_PORT PORTD
-#endif
-#ifndef TLC5940_GS_PIN
-#define TLC5940_GS_PIN 3
-#endif
-// serial clock  *
-#ifndef TLC5940_SCK_PORT
-#define TLC5940_SCK_PORT PORTB
-#endif
-#ifndef TLC5940_SCK_PIN
-#define TLC5940_SCK_PIN 7
-#endif
-// latch  *
-#ifndef TLC5940_XLAT_PORT
-#define TLC5940_XLAT_PORT PORTD
-#endif
-#ifndef TLC5940_XLAT_PIN
-#define TLC5940_XLAT_PIN 5
-#endif
 // programming select
 #ifndef TLC5940_VPRG_PORT
 #define TLC5940_VPRG_PORT PORTD
@@ -42,20 +14,8 @@
 #ifndef TLC5940_VPRG_PIN
 #define TLC5940_VPRG_PIN  7
 #endif
-// blank outputs - pullup resistor
-#ifndef TLC5940_BLANK_PORT
-#define TLC5940_BLANK_PORT PORTB
-#endif
-#ifndef TLC5940_BLANK_PIN
-#define TLC5940_BLANK_PIN 4
-#endif
-// serial data master out slave in
-#ifndef TLC5940_MOSI_PORT
-#define TLC5940_MOSI_PORT PORTB
-#endif
-#ifndef TLC5940_MOSI_PIN
-#define TLC5940_MOSI_PIN 5
-#endif
+
+
 
 #ifndef TLC5940_N
 #define TLC5940_N 3
