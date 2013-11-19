@@ -18,12 +18,12 @@
 #define GS_XT_DDR	DDRD
 #define GS_XT_PORT	PORTD
 
-#define BLANK		PB4
-#define MOSI		PB5
-#define MISO		PB6
-#define SCLK		PB7
-#define GSCLK		PD3
-#define XLAT		PD5
+#define BLANK		PB4 //~SS to Blank
+#define MOSI		PB5 //Mosi To Serial In
+#define MISO		PB6 //Miso To Nothing
+#define SCLK		PB7 //SCK To SCLK
+#define GSCLK		PD3 //(PCINT0/CLK0/ICP1) to GSCLK
+#define XLAT		PD5 //OC1A to XLAT
 
 #define NUM_TLC		4
 
