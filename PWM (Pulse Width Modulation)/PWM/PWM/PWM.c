@@ -1,40 +1,12 @@
-/*
-	This is the Master Control program for the LED = Bacon workshop
-	It has all 3 programs running at the same time and yea.
-	
-	
-	This code was not written by Shannon Strutz
-	All credit goes to clawson on AVRfreaks.com
-	
-	Although if you need help I can explain it
-	
-	Connection diagram
-	Since our output is going to be on the Output Compare pin 1
-	we are going to connect our LED to the OCR1A pin, which is located at PD5
-	
-
-*/
-#define F_CPU 1000000UL
-
 #include <avr/io.h> 
 #include <util/delay.h> 
 #include <avr/pgmspace.h> 
 #include <avr/interrupt.h> 
 #include <avr/sleep.h> 
-#include <stdio.h>
 
 enum { UP, DOWN }; 
 
 volatile uint16_t pwm;      //pwm counter var 
-
-#define GREEN PB0
-#define BLUE PB1
-#define RED PB2
-#define Button PA5
-uint8_t LED = 0;
-
-
-
 
 int main(void) 
 { 
