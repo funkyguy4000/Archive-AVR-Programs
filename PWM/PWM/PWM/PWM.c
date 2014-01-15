@@ -35,7 +35,7 @@ enum { UP, DOWN };
 
 volatile uint16_t pwm;      //pwm counter var 
 
-#define speed 1
+#define speed 4
 
 int main(void) 
 { 

@@ -172,7 +172,7 @@ ISR (TIMER1_OVF_vect)
             pwm = pwm + speed; 
   d2:	80 91 62 00 	lds	r24, 0x0062
   d6:	90 91 63 00 	lds	r25, 0x0063
-  da:	01 96       	adiw	r24, 0x01	; 1
+  da:	04 96       	adiw	r24, 0x04	; 4
   dc:	90 93 63 00 	sts	0x0063, r25
   e0:	80 93 62 00 	sts	0x0062, r24
             if (pwm >= 1023) 
@@ -192,7 +192,7 @@ ISR (TIMER1_OVF_vect)
             pwm = pwm - speed; 
   fa:	80 91 62 00 	lds	r24, 0x0062
   fe:	90 91 63 00 	lds	r25, 0x0063
- 102:	01 97       	sbiw	r24, 0x01	; 1
+ 102:	04 97       	sbiw	r24, 0x04	; 4
  104:	90 93 63 00 	sts	0x0063, r25
  108:	80 93 62 00 	sts	0x0062, r24
             if (pwm == 0) 

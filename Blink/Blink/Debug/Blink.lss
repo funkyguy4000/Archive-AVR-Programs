@@ -3,59 +3,55 @@ Blink.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000e8  00000000  00000000  00000094  2**1
+  0 .text         00000098  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  000000e8  0000017c  2**0
+  1 .data         00000000  00800060  00000098  0000010c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  00800060  00800060  0000017c  2**0
-                  ALLOC
-  3 .stab         000006cc  00000000  00000000  0000017c  2**2
+  2 .stab         000006cc  00000000  00000000  0000010c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000097  00000000  00000000  00000848  2**0
+  3 .stabstr      00000097  00000000  00000000  000007d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .comment      0000002f  00000000  00000000  000008df  2**0
+  4 .comment      0000002f  00000000  00000000  0000086f  2**0
                   CONTENTS, READONLY
-  6 .debug_aranges 00000020  00000000  00000000  0000090e  2**0
+  5 .debug_aranges 00000020  00000000  00000000  0000089e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   0000013f  00000000  00000000  0000092e  2**0
+  6 .debug_info   0000016b  00000000  00000000  000008be  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000000da  00000000  00000000  00000a6d  2**0
+  7 .debug_abbrev 000000e1  00000000  00000000  00000a29  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   0000018e  00000000  00000000  00000b47  2**0
+  8 .debug_line   0000019b  00000000  00000000  00000b0a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000024  00000000  00000000  00000cd8  2**2
+  9 .debug_frame  00000024  00000000  00000000  00000ca8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    000000f4  00000000  00000000  00000cfc  2**0
+ 10 .debug_str    000000f7  00000000  00000000  00000ccc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000046  00000000  00000000  00000df0  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000010  00000000  00000000  00000e36  2**0
+ 11 .debug_ranges 00000010  00000000  00000000  00000dc3  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
 
 00000054 <__ctors_end>:
   54:	11 24       	eor	r1, r1
@@ -64,127 +60,56 @@ Disassembly of section .text:
   5a:	d4 e0       	ldi	r29, 0x04	; 4
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 4a 00 	jmp	0x94	; 0x94 <_exit>
 
-00000060 <__do_clear_bss>:
-  60:	20 e0       	ldi	r18, 0x00	; 0
-  62:	a0 e6       	ldi	r26, 0x60	; 96
-  64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000068 <.do_clear_bss_loop>:
-  68:	1d 92       	st	X+, r1
+0000006c <main>:
 
-0000006a <.do_clear_bss_start>:
-  6a:	a1 36       	cpi	r26, 0x61	; 97
-  6c:	b2 07       	cpc	r27, r18
-  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
-  70:	0e 94 3e 00 	call	0x7c	; 0x7c <main>
-  74:	0c 94 72 00 	jmp	0xe4	; 0xe4 <_exit>
-
-00000078 <__bad_interrupt>:
-  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
-
-0000007c <main>:
 
 int main(void)
 {
-	//Again we define the data direction register
-	//Now we include 3 leds, because then we have a treasure chest
-	DDRB &= ~(1<<Button);
-  7c:	bd 98       	cbi	0x17, 5	; 23
-	DDRB|= (1<<GREEN);
-  7e:	b8 9a       	sbi	0x17, 0	; 23
-	DDRB|= (1<<BLUE);
-  80:	b9 9a       	sbi	0x17, 1	; 23
-	DDRB|= (1<<RED);
-  82:	ba 9a       	sbi	0x17, 2	; 23
-	PORTA|=(1<<Button);
-  84:	dd 9a       	sbi	0x1b, 5	; 27
-
-	while(1) {
-		if (PINA & (1<<Button)){
-  86:	cd 9b       	sbis	0x19, 5	; 25
-  88:	13 c0       	rjmp	.+38     	; 0xb0 <main+0x34>
+	
+	DDRC |= (1<<PC6) | (1<<PC7);
+  6c:	84 b3       	in	r24, 0x14	; 20
+  6e:	80 6c       	ori	r24, 0xC0	; 192
+  70:	84 bb       	out	0x14, r24	; 20
+		
+	while(1){
+		PORTC |= (1<<PC6);
+  72:	ae 9a       	sbi	0x15, 6	; 21
+		PORTC &= ~(1<<PC7);
+  74:	af 98       	cbi	0x15, 7	; 21
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  8a:	8f e0       	ldi	r24, 0x0F	; 15
-  8c:	97 e2       	ldi	r25, 0x27	; 39
-  8e:	01 97       	sbiw	r24, 0x01	; 1
-  90:	f1 f7       	brne	.-4      	; 0x8e <main+0x12>
-  92:	00 c0       	rjmp	.+0      	; 0x94 <main+0x18>
-  94:	00 00       	nop
-			_delay_ms(5);
-			if (PINA & (1<<Button)){
-  96:	cd 9b       	sbis	0x19, 5	; 25
-  98:	f6 cf       	rjmp	.-20     	; 0x86 <main+0xa>
-				if (LED == 2)
-  9a:	80 91 60 00 	lds	r24, 0x0060
-  9e:	82 30       	cpi	r24, 0x02	; 2
-  a0:	19 f4       	brne	.+6      	; 0xa8 <main+0x2c>
-					LED = 0;
-  a2:	10 92 60 00 	sts	0x0060, r1
-  a6:	ef cf       	rjmp	.-34     	; 0x86 <main+0xa>
-				else
-					LED = LED + 1;
-  a8:	8f 5f       	subi	r24, 0xFF	; 255
-  aa:	80 93 60 00 	sts	0x0060, r24
-  ae:	eb cf       	rjmp	.-42     	; 0x86 <main+0xa>
-			}
-			else{}
-		}			
-		else{
-		switch (LED)
-  b0:	80 91 60 00 	lds	r24, 0x0060
-  b4:	81 30       	cpi	r24, 0x01	; 1
-  b6:	49 f0       	breq	.+18     	; 0xca <main+0x4e>
-  b8:	18 f0       	brcs	.+6      	; 0xc0 <main+0x44>
-  ba:	82 30       	cpi	r24, 0x02	; 2
-  bc:	81 f4       	brne	.+32     	; 0xde <main+0x62>
-  be:	0a c0       	rjmp	.+20     	; 0xd4 <main+0x58>
-		{
-			case 0:
-			PORTB |= (1<<GREEN);
-  c0:	c0 9a       	sbi	0x18, 0	; 24
-			PORTB &= ~(1<<BLUE) & ~(1<<RED);
-  c2:	88 b3       	in	r24, 0x18	; 24
-  c4:	89 7f       	andi	r24, 0xF9	; 249
-  c6:	88 bb       	out	0x18, r24	; 24
-			break;
-  c8:	de cf       	rjmp	.-68     	; 0x86 <main+0xa>
-			
-			case 1:
-			PORTB &= ~(1<<GREEN) & ~(1<<RED);
-  ca:	88 b3       	in	r24, 0x18	; 24
-  cc:	8a 7f       	andi	r24, 0xFA	; 250
-  ce:	88 bb       	out	0x18, r24	; 24
-			PORTB |= (1<<BLUE);			
-  d0:	c1 9a       	sbi	0x18, 1	; 24
-			break;
-  d2:	d9 cf       	rjmp	.-78     	; 0x86 <main+0xa>
-			
-			case 2:
-			PORTB &= ~(1<<GREEN) & ~(1<<BLUE);
-  d4:	88 b3       	in	r24, 0x18	; 24
-  d6:	8c 7f       	andi	r24, 0xFC	; 252
-  d8:	88 bb       	out	0x18, r24	; 24
-			PORTB |= (1<<RED);
-  da:	c2 9a       	sbi	0x18, 2	; 24
-			break;
-  dc:	d4 cf       	rjmp	.-88     	; 0x86 <main+0xa>
-			
-			default:
-			PORTB |= (1<<GREEN) & (1<<BLUE) & (1<<RED);
-  de:	88 b3       	in	r24, 0x18	; 24
-  e0:	88 bb       	out	0x18, r24	; 24
-			break;
-  e2:	d1 cf       	rjmp	.-94     	; 0x86 <main+0xa>
+  76:	8f e3       	ldi	r24, 0x3F	; 63
+  78:	9c e9       	ldi	r25, 0x9C	; 156
+  7a:	01 97       	sbiw	r24, 0x01	; 1
+  7c:	f1 f7       	brne	.-4      	; 0x7a <main+0xe>
+  7e:	00 c0       	rjmp	.+0      	; 0x80 <main+0x14>
+  80:	00 00       	nop
+		_delay_ms(Delay);
+		
+		PORTC |= (1<<PC7);
+  82:	af 9a       	sbi	0x15, 7	; 21
+		PORTC &= ~(1<<PC6);
+  84:	ae 98       	cbi	0x15, 6	; 21
+  86:	8f e3       	ldi	r24, 0x3F	; 63
+  88:	9c e9       	ldi	r25, 0x9C	; 156
+  8a:	01 97       	sbiw	r24, 0x01	; 1
+  8c:	f1 f7       	brne	.-4      	; 0x8a <main+0x1e>
+  8e:	00 c0       	rjmp	.+0      	; 0x90 <main+0x24>
+  90:	00 00       	nop
+  92:	ef cf       	rjmp	.-34     	; 0x72 <main+0x6>
 
-000000e4 <_exit>:
-  e4:	f8 94       	cli
+00000094 <_exit>:
+  94:	f8 94       	cli
 
-000000e6 <__stop_program>:
-  e6:	ff cf       	rjmp	.-2      	; 0xe6 <__stop_program>
+00000096 <__stop_program>:
+  96:	ff cf       	rjmp	.-2      	; 0x96 <__stop_program>

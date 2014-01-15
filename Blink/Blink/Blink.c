@@ -23,23 +23,23 @@
 #include <avr/io.h>
 #include <inttypes.h>
 
-#define LED1 PB0
-#define LED2 PB1
-#define Delay 10
+#define LED1 PC6
+#define LED2 PC7
+#define Delay 20
 
 
 int main(void)
 {
 	
-	DDRB |= (1<<PB0) | (1<<PB1);
+	DDRC |= (1<<PC6) | (1<<PC7);
 		
 	while(1){
-		PORTB |= (1<<PB0);
-		PORTB &= ~(1<<PB1);
+		PORTC |= (1<<PC6);
+		PORTC &= ~(1<<PC7);
 		_delay_ms(Delay);
 		
-		PORTB |= (1<<PB1);
-		PORTB &= ~(1<<PB0);
+		PORTC |= (1<<PC7);
+		PORTC &= ~(1<<PC6);
 		_delay_ms(Delay);
 	}	
 }
