@@ -3,6 +3,10 @@ AVR-Programs
 
 Various programs for the AVR.  ATmega16 specifically
 
+There are a few libraries although many of them are incomplete and are postponed indefinetly for the AVR.  Much of my development has moved to ARM
+
+The programs avaliable are not maintained although all of them worked when they were posted.  If you have any issues with any of them, please contact me!
+
 Author: Shannon Strutz
 Website: www.shannonstrutz.com
 E-mail: strutz.shannon@gmail.com
